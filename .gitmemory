@@ -31,8 +31,15 @@
 ---
 
 **IMPORTANT**: Always remember:
-- ✅ One task = One commit
-- ✅ One phase = One feature branch
-- ✅ Merge with --no-ff when phase complete
-- ✅ Tag phase completions
+- ✅ One task = One commit (NEVER commit multiple tasks together)
+- ✅ One phase = One feature branch (NEVER mix phases in one branch)
+- ✅ Merge with --no-ff when phase complete (preserves branch history)
+- ✅ Tag phase completions (for milestone tracking)
+
+**For Future Phases:**
+- Start by creating feature branch: `git checkout -b feature/phase-X-phase-name`
+- Complete tasks ONE AT A TIME
+- Commit immediately after each task: `git commit -m "Task X.Y: Task Title"`
+- Push regularly: `git push origin feature/phase-X-phase-name`
+- When phase complete, merge to main and tag
 

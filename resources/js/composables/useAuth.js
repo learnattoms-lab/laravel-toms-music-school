@@ -3,7 +3,7 @@
  * Provides authentication functionality for Vue components
  */
 
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '@/utils/api';
 
@@ -221,15 +221,15 @@ export function useAuth() {
      */
     const isStudent = computed(() => !isTeacher.value && (hasRole('ROLE_USER') || !user.value?.roles?.length));
 
-    // Initialize auth state on mount
-    onMounted(() => {
+    // Initialize auth state
+    const initialize = () => {
         initAuth();
         
         // If token exists but user doesn't, fetch user
         if (token.value && !user.value) {
             fetchUser();
         }
-    });
+    };
 
     return {
         // State
@@ -253,6 +253,7 @@ export function useAuth() {
         hasRole,
         clearAuth,
         initAuth,
+        initialize,
     };
 }
 

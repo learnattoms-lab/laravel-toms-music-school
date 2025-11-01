@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -72,6 +73,41 @@ class Session extends Model
     public function assignments(): HasMany
     {
         return $this->hasMany(Assignment::class);
+    }
+
+    /**
+     * Students enrolled in this session.
+     */
+    public function students(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'session_students', 'session_id', 'user_id');
+    }
+
+    /**
+     * Get session title for Google Calendar.
+     */
+    public function getSessionTitle(): string
+    {
+        $course = $this->course;
+        $lesson = $this->lesson;
+
+        if ($course && $lesson) {
+            return "{$course->title} - {$lesson->title}";
+        }
+
+        if ($course) {
+            return $course->title;
+        }
+
+        return 'Music Lesson Session';
+    }
+
+    /**
+     * Get enrolled students collection.
+     */
+    public function getEnrolledStudents()
+    {
+        return $this->students;
     }
 
     public function scopeUpcoming($query)

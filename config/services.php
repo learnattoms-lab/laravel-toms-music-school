@@ -35,4 +35,24 @@ return [
         ],
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect_uri' => env('GOOGLE_REDIRECT_URI'),
+        'calendar_id' => env('GOOGLE_DEFAULT_CALENDAR_ID', 'primary'),
+    ],
+
+    'gcs' => [
+        'key_file' => env('GOOGLE_CLOUD_KEY_FILE'),
+        'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'toms-lms'),
+        'public_base_url' => env('GOOGLE_CLOUD_STORAGE_PUBLIC_BASE_URL'),
+        'make_public' => env('GOOGLE_CLOUD_STORAGE_MAKE_PUBLIC', false),
+    ],
+
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+    ],
+
 ];

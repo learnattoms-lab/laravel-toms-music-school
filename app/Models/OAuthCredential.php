@@ -61,4 +61,12 @@ class OAuthCredential extends Model
     {
         return $this->expires_at && $this->expires_at->isBefore(now()->addMinutes($minutes));
     }
+
+    /**
+     * Check if token needs refresh (expires in next 5 minutes).
+     */
+    public function needsRefresh(): bool
+    {
+        return $this->isExpiringSoon(5);
+    }
 }

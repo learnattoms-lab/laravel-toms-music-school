@@ -1,11 +1,19 @@
 <template>
-    <div id="app" class="min-h-screen bg-gray-50">
+    <AppLayout>
         <router-view />
-    </div>
+    </AppLayout>
 </template>
 
 <script setup>
-// Main App Component
+import { onMounted } from 'vue';
+import { useAuth } from './composables/useAuth';
+import AppLayout from './components/layout/AppLayout.vue';
+
+const { initialize } = useAuth();
+
+onMounted(() => {
+    initialize();
+});
 </script>
 
 <style scoped>

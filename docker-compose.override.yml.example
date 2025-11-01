@@ -1,0 +1,32 @@
+# Docker Compose Override Example
+# Copy this file to docker-compose.override.yml for local customizations
+# This file is git-ignored and allows for local development overrides
+
+version: '3.8'
+
+services:
+  app:
+    # Override command for development
+    # command: php artisan serve --host=0.0.0.0 --port=8000
+    
+    # Add additional environment variables
+    # environment:
+    #   - XDEBUG_MODE=develop,debug
+    
+    # Mount additional volumes
+    # volumes:
+    #   - ./storage:/var/www/html/storage
+
+  mysql:
+    # Override port mapping
+    # ports:
+    #   - "3307:3306"
+
+  redis:
+    # Override Redis configuration
+    # command: redis-server --appendonly yes --requirepass mypassword
+
+  node:
+    # Override Node.js command
+    # command: sh -c "npm install && npm run watch"
+

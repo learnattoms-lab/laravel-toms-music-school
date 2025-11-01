@@ -1,0 +1,56 @@
+# Laravel
+/vendor
+/node_modules
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.phpunit.cache
+coverage
+.nyc_output
+
+# Build
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+
+# Logs
+*.log
+storage/logs/*
+!storage/logs/.gitignore
+
+# Cache
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+

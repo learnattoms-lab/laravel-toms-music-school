@@ -86,6 +86,68 @@ const routes = [
         component: ComponentTestPage,
         meta: { requiresAuth: false }, // Allow test page without auth
     },
+    // Admin routes
+    {
+        path: '/admin',
+        name: 'admin-dashboard',
+        component: () => import('../pages/admin/AdminDashboardPage.vue'),
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: '/admin/users',
+        name: 'admin-users',
+        component: () => import('../pages/admin/UserManagementPage.vue'),
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: '/admin/teachers',
+        name: 'admin-teachers',
+        component: () => import('../pages/admin/TeacherManagementPage.vue'),
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: '/admin/analytics',
+        name: 'admin-analytics',
+        component: () => import('../pages/admin/AnalyticsPage.vue'),
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    // Teacher routes
+    {
+        path: '/teacher',
+        name: 'teacher-dashboard',
+        component: () => import('../pages/teacher/TeacherDashboardPage.vue'),
+        meta: { requiresAuth: true, requiresTeacher: true },
+    },
+    {
+        path: '/teacher/courses',
+        name: 'teacher-courses',
+        component: () => import('../pages/teacher/CourseManagementPage.vue'),
+        meta: { requiresAuth: true, requiresTeacher: true },
+    },
+    {
+        path: '/teacher/courses/create',
+        name: 'teacher-course-create',
+        component: () => import('../pages/teacher/CourseManagementPage.vue'), // Will be separate create page later
+        meta: { requiresAuth: true, requiresTeacher: true },
+    },
+    {
+        path: '/teacher/sessions',
+        name: 'teacher-sessions',
+        component: () => import('../pages/teacher/SessionManagementPage.vue'),
+        meta: { requiresAuth: true, requiresTeacher: true },
+    },
+    {
+        path: '/teacher/sessions/create',
+        name: 'teacher-session-create',
+        component: () => import('../pages/teacher/SessionManagementPage.vue'), // Will be separate create page later
+        meta: { requiresAuth: true, requiresTeacher: true },
+    },
+    {
+        path: '/teacher/students',
+        name: 'teacher-students',
+        component: () => import('../pages/teacher/StudentManagementPage.vue'),
+        meta: { requiresAuth: true, requiresTeacher: true },
+    },
 ];
 
 const router = createRouter({
@@ -95,7 +157,7 @@ const router = createRouter({
 
 // Navigation guards
 router.beforeEach((to, from, next) => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, isAdmin, isTeacher } = useAuth();
 
     // Check if route requires authentication
     if (to.meta.requiresAuth !== false && to.meta.requiresAuth && !isAuthenticated.value) {
@@ -103,6 +165,18 @@ router.beforeEach((to, from, next) => {
             name: 'login',
             query: { redirect: to.fullPath },
         });
+        return;
+    }
+
+    // Check if route requires admin
+    if (to.meta.requiresAdmin && !isAdmin.value) {
+        next({ name: 'dashboard' });
+        return;
+    }
+
+    // Check if route requires teacher
+    if (to.meta.requiresTeacher && !isTeacher.value) {
+        next({ name: 'dashboard' });
         return;
     }
 

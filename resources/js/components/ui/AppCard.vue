@@ -20,6 +20,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+
 const props = defineProps({
     padding: {
         type: String,
@@ -49,10 +51,6 @@ const handleClick = () => {
         emit('click');
     }
 };
-</script>
-
-<script>
-import { computed } from 'vue';
 </script>
 
 <style scoped>

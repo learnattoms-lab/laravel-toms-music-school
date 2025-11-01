@@ -2,12 +2,14 @@
     <AppLayout>
         <router-view />
     </AppLayout>
+    <AppToast />
 </template>
 
 <script setup>
 import { onMounted } from 'vue';
 import { useAuth } from './composables/useAuth';
 import AppLayout from './components/layout/AppLayout.vue';
+import AppToast from './components/common/AppToast.vue';
 
 const { initialize } = useAuth();
 

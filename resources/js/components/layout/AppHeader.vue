@@ -113,14 +113,14 @@
                             </router-link>
                             <router-link
                                 v-if="isTeacher"
-                                to="/teacher/dashboard"
+                                to="/teacher"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
                                 Teacher Dashboard
                             </router-link>
                             <router-link
                                 v-if="isAdmin"
-                                to="/admin/dashboard"
+                                to="/admin"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
                                 Admin Dashboard

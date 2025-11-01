@@ -1,0 +1,38 @@
+# Git Workflow Memory
+
+## Critical Workflow Rules (Keep in Memory)
+
+### 1. Commit Strategy
+- **ONE TASK = ONE COMMIT**
+- Each task must have its own individual commit
+- Never commit multiple tasks in a single commit
+- Commit message format: `Task X.Y: Task Title`
+
+### 2. Feature Branch Strategy
+- **ONE PHASE = ONE FEATURE BRANCH**
+- Feature branches follow pattern: `feature/phase-X-phase-name`
+- When a phase is complete, merge feature branch to `main` with `--no-ff`
+- Tag phase completion: `phase-X-complete`
+
+### 3. Phase Completion Workflow
+1. Ensure all tasks have individual commits
+2. Create phase completion empty commit (optional summary)
+3. Tag phase completion: `git tag -a phase-X-complete`
+4. Push feature branch and tag
+5. Merge to main with `--no-ff`: `git merge feature/phase-X --no-ff`
+6. Push main branch
+
+### 4. Starting New Phase
+1. Create new feature branch: `git checkout -b feature/phase-X-phase-name`
+2. Work on tasks one at a time
+3. Commit each task individually
+4. Push regularly: `git push origin feature/phase-X-phase-name`
+
+---
+
+**IMPORTANT**: Always remember:
+- ✅ One task = One commit
+- ✅ One phase = One feature branch
+- ✅ Merge with --no-ff when phase complete
+- ✅ Tag phase completions
+
